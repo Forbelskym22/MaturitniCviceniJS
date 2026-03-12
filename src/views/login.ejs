@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Maturitní Cvičení JS</h1>
+            <p class="text-gray-600 mt-2">Přihlaste se ke svému účtu</p>
+        </div>
+        
+        <form action="/login" method="POST" class="space-y-6">
+            <div>
+                <label for="login" class="block text-sm font-medium text-gray-700">Přihlašovací jméno</label>
+                <input type="text" id="login" name="login" required 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-150">
+            </div>
+            
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Heslo</label>
+                <input type="password" id="password" name="password" required 
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-150">
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 shadow-sm">
+                Přihlásit se
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+            <p class="text-sm text-gray-600">
+                Nemáte účet? <a href="#" class="text-blue-600 hover:text-blue-500 font-medium text-md px-1">Zaregistrujte se</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
