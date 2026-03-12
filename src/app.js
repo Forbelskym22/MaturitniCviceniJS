@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const homeRoutes = require('./routes/homeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use('/', homeRoutes);
+app.use('/user', userRoutes);
 
 // Start the server
 app.listen(PORT, () => {
