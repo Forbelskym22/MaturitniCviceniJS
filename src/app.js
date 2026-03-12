@@ -1,10 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI;
+
+// MongoDB connection
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('Připojeno k MongoDB'))
+    .catch(err => console.error('Chyba při připojování k MongoDB:', err));
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
