@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const homeRoutes = require('./routes/homeRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,10 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Main route
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Maturitní Cvičení JS' });
-});
+// Routes
+app.use('/', homeRoutes);
 
 // Start the server
 app.listen(PORT, () => {
