@@ -1,1 +1,1 @@
-# MaturitniCviceniCsharp
+# MaturitniCviceniJS
