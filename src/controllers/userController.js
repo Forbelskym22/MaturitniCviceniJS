@@ -28,8 +28,12 @@ exports.postLogin = async (req, res) => {
         }
 
         console.log(`Uživatel ${login} se úspěšně přihlásil`);
-        // Note: Real apps use sessions or JWTs here.
-        res.redirect('/');
+        
+        // Store user info in session
+        req.session.userId = user._id;
+        req.session.username = user.login;
+        
+        res.redirect('/notes');
     } catch (err) {
         console.error(err);
         res.render('login', { 

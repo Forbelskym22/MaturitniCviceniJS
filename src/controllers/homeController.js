@@ -4,3 +4,14 @@ exports.getHome = (req, res) => {
         message: 'Vítejte v naší aplikaci používající MVC architekturu!'
     });
 };
+
+exports.getNotes = (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect('/user/login');
+    }
+    
+    res.render('notes', { 
+        title: 'Moje Poznámky',
+        user: req.session.username
+    });
+};

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
 
@@ -13,6 +14,14 @@ const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI)
     .then(() => console.log('Připojeno k MongoDB'))
     .catch(err => console.error('Chyba při připojování k MongoDB:', err));
+
+// Session configuration
+app.use(session({
+    secret: 'maturitni_tajemstvi_2026',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
