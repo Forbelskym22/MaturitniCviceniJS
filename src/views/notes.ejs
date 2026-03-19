@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .apple-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .note-card { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .note-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-[#F5F5F7] min-h-screen text-[#1D1D1F]">
+    <!-- Navbar -->
+    <nav class="bg-white/80 apple-blur border-b border-black/5 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-xl font-semibold tracking-tight">Poznámky</span>
+                </div>
+
+                <!-- Simple Apple-style Profile -->
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" @click.outside="open = false" 
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-black/5 transition-colors focus:outline-none">
+                        <span class="text-sm font-medium opacity-80"><%= user %></span>
+                        <div class="w-7 h-7 rounded-full bg-gradient-to-b from-gray-200 to-gray-300 flex items-center justify-center text-[10px] font-bold text-gray-600 shadow-inner">
+                            <%= user.charAt(0).toUpperCase() %>
+                        </div>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div x-show="open" 
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        class="absolute right-0 mt-2 w-40 bg-white/90 apple-blur rounded-2xl shadow-2xl border border-black/5 py-1.5 overflow-hidden origin-top-right"
+                        style="display: none;">
+                        <a href="/user/login" class="block px-4 py-2 text-sm text-red-500 hover:bg-black/5 transition-colors font-medium">
+                            Odhlásit se
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto py-12 px-6">
+        <div class="flex justify-between items-center mb-10">
+            <h1 class="text-4xl font-bold tracking-tight">Ahoj, <%= user %></h1>
+            <button class="bg-black text-white px-5 py-2.5 rounded-full font-medium hover:bg-black/80 transition-all active:scale-95 text-sm">
+                Nová poznámka
+            </button>
+        </div>
+        
+        <!-- Notes Content -->
+        <div class="space-y-6">
+            <div class="bg-white rounded-3xl p-12 border border-black/5 flex flex-col items-center justify-center text-center">
+                <div class="w-16 h-16 bg-[#F5F5F7] rounded-2xl flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Žádné poznámky</h3>
+                <p class="text-black/40 text-sm max-w-[240px]">Zatím jste nic nenapsali. Vaše první myšlenka čeká na zachycení.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
