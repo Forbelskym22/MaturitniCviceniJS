@@ -3,46 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title><%= title %> - NotesApp</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', -apple-system, sans-serif; }
+        .apple-shadow { box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1); }
+    </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">Maturitní Cvičení JS</h1>
-            <p class="text-gray-600 mt-2">Přihlaste se ke svému účtu</p>
+<body class="bg-[#F5F5F7] min-h-screen flex items-center justify-center p-6 text-[#1D1D1F]">
+    <div class="w-full max-w-[400px] space-y-8">
+        <div class="text-center space-y-2">
+            <div class="w-16 h-16 bg-black rounded-2xl mx-auto flex items-center justify-center mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold tracking-tight">Přihlaste se</h1>
+            <p class="text-black/40 text-sm">Zadejte své údaje pro pokračování.</p>
         </div>
 
         <% if (locals.error) { %>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline"><%= error %></span>
+            <div class="bg-red-50 text-red-500 text-xs font-medium px-4 py-3 rounded-xl border border-red-100 text-center">
+                <%= error %>
             </div>
         <% } %>
-        
-        <form action="/user/login" method="POST" class="space-y-6">
-            <div>
-                <label for="login" class="block text-sm font-medium text-gray-700">Přihlašovací jméno</label>
-                <input type="text" id="login" name="login" required 
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-150">
-            </div>
-            
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Heslo</label>
-                <input type="password" id="password" name="password" required 
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-150">
-            </div>
 
-            <button type="submit" 
-                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 shadow-sm">
-                Přihlásit se
-            </button>
-        </form>
+        <div class="bg-white p-8 rounded-[32px] apple-shadow border border-black/5">
+            <form action="/user/login" method="POST" class="space-y-4">
+                <div class="space-y-1">
+                    <label for="login" class="text-[11px] font-semibold text-black/40 uppercase tracking-wider ml-1">Uživatelské jméno</label>
+                    <input type="text" id="login" name="login" required 
+                        class="w-full bg-[#F5F5F7] border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-black/5 outline-none transition-all placeholder:text-black/20"
+                        placeholder="john_doe">
+                </div>
+                
+                <div class="space-y-1">
+                    <label for="password" class="text-[11px] font-semibold text-black/40 uppercase tracking-wider ml-1">Heslo</label>
+                    <input type="password" id="password" name="password" required 
+                        class="w-full bg-[#F5F5F7] border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-black/5 outline-none transition-all placeholder:text-black/20"
+                        placeholder="••••••••">
+                </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-            <p class="text-sm text-gray-600">
-                Nemáte účet? <a href="/user/register" class="text-blue-600 hover:text-blue-500 font-medium text-md px-1">Zaregistrujte se</a>
-            </p>
+                <button type="submit" 
+                    class="w-full bg-black text-white py-3.5 rounded-xl font-semibold text-sm hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-black/10 mt-2">
+                    Přihlásit se
+                </button>
+            </form>
         </div>
+
+        <p class="text-center text-sm text-black/40">
+            Nemáte účet? <a href="/user/register" class="text-black font-semibold hover:underline">Vytvořit účet</a>
+        </p>
     </div>
 </body>
 </html>
